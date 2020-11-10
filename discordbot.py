@@ -10,12 +10,7 @@ ch_id2 = 768052555208327168
 s1_id = 637735141598560268
 s2_id = 767192822352052235
 
-@bot.event
-async def on_command_error(ctx, error):
-    orig_error = getattr(error, "original", error)
-    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
-
+@client.event
 async def on_ready():
     print("on_ready")
     print(discord.__version__)
@@ -50,6 +45,7 @@ async def reply(message, file_data):
         await channel_2.send('idが設定されていません')
 
 # 発言時に実行されるイベントハンドラを定義
+@client.event
 async def on_message(message):
     if message.author.bot:
         return
@@ -64,6 +60,12 @@ async def on_message(message):
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
+    
+@bot.event
+async def on_command_error(ctx, error):
+    orig_error = getattr(error, "original", error)
+    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
+    await ctx.send(error_msg)
 
 
 bot.run(token)
