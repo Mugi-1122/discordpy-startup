@@ -16,7 +16,6 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-@client.event
 async def on_ready():
     print("on_ready")
     print(discord.__version__)
@@ -51,7 +50,6 @@ async def reply(message, file_data):
         await channel_2.send('idが設定されていません')
 
 # 発言時に実行されるイベントハンドラを定義
-@client.event
 async def on_message(message):
     if message.author.bot:
         return
