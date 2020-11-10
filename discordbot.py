@@ -4,7 +4,7 @@ import traceback
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
-
+client = discord.Client()
 ch_id1 = 768052430172061717
 ch_id2 = 768052555208327168
 s1_id = 637735141598560268
